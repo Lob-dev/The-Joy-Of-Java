@@ -1,0 +1,16 @@
+
+### sign-up
+POST http://localhost:8080/accounts/sign-up
+Content-type: application/json
+
+{
+  "name" : "name",
+  "password" : "password",
+  "email" : "test@lob.com"
+}
+
+
+### get token
+POST http://localhost:8080/oauth/token?username=name&password=password&grant_type=password
+Authorization: Basic sample-client sample-secret
+Content-Type: application/x-www-form-urlencoded

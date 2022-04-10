@@ -1,0 +1,35 @@
+
+### add
+POST http://localhost:8080/samples
+Content-Type: application/json
+
+{
+  "title" : "title",
+  "description" : "description"
+}
+
+
+### gets
+GET http://localhost:8080/samples
+Content-Type: application/json
+
+{
+  "pageNumber" : 0,
+  "pageSize" : 10
+}
+
+
+### get One
+GET http://localhost:8080/samples/1
+
+
+### modify
+PUT http://localhost:8080/samples/1
+Content-Type: application/json
+
+{
+  "title" : "title",
+  "description" : "description1"
+}
+
+

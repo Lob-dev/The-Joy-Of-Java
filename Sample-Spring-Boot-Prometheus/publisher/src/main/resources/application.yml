@@ -1,0 +1,29 @@
+# yml 출처 : https://meetup.toast.com/posts/237
+management:
+  endpoints:
+    web:
+      exposure:
+        include: prometheus
+  metrics:
+    tags:
+      application: ${spring.application.name}
+  endpoint:
+    health:
+      show-details: always
+
+spring:
+  application:
+    name: "publisher_application"
+
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+
+logging:
+  level:
+    root: info
+
+server:
+  port: 8080

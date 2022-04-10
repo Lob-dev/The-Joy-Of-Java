@@ -1,0 +1,46 @@
+# yml 참고 : https://meetup.toast.com/posts/237
+management:
+  endpoints:
+    web:
+      exposure:
+        include: prometheus
+  metrics:
+    tags:
+      application: ${spring.application.name}
+  endpoint:
+    health:
+      show-details: always
+
+spring:
+  application:
+    name: "subscriber_application"
+
+  datasource:
+    url: jdbc:h2:mem:testdb
+    username: sa
+    driver-class-name: org.h2.Driver
+
+  h2:
+    console:
+      enabled: true
+
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      show-sql: true
+      format_sql: true
+    open-in-view: false
+
+logging:
+  level:
+    root: info
+
+server:
+  port: 8081

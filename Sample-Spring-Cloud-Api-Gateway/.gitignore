@@ -1,0 +1,12 @@
+Api-Gateway/.gradle/**
+Api-Gateway/gradle
+Api-Gateway/.idea/**
+Api-Gateway/build/**
+Api-Gateway/gradlew
+Api-Gateway/HELP.md
+Api-Gateway/gradlew.bat
+
+Authorization-Api/.idea/**
+
+Resources-Api/.idea/**
+Resources-Api/venv/**

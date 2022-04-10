@@ -1,0 +1,92 @@
+plugins {
+	id 'org.springframework.boot' version '2.5.5'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'nu.studer.jooq' version '5.2'
+	id 'java'
+}
+
+group = 'com.sample'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '8'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation "org.springframework.boot:spring-boot-starter-data-jpa"
+	implementation "org.springframework.boot:spring-boot-starter-jooq"
+
+	// GenerationTool Dependency
+	// implementation "org.jooq:jooq-codegen:${dependencyManagement.importedProperties['jooq.version']}"
+	// implementation "org.jooq:jooq-meta:${dependencyManagement.importedProperties['jooq.version']}"
+
+	implementation "org.postgresql:postgresql:42.2.14"
+
+	compileOnly "org.projectlombok:lombok"
+	annotationProcessor "org.projectlombok:lombok"
+
+	testImplementation "org.springframework.boot:spring-boot-starter-test"
+}
+
+test {
+	useJUnitPlatform()
+}
+
+// JooqApplication.init() 참고
+jooq {
+	version = dependencyManagement.importedProperties['jooq.version'] // use jOOQ version defined in Spring Boot
+
+	configurations {
+		main {
+			generateSchemaSourceOnCompilation = true // default (can be omitted)
+			generationTool {
+				logging = org.jooq.meta.jaxb.Logging.DEBUG
+				jdbc {
+					driver = 'org.postgresql.Driver'
+					url = 'jdbc:postgresql://localhost:5432/sample'
+					user = 'name'
+					password = 'password'
+				}
+				generator {
+					name = 'org.jooq.codegen.DefaultGenerator'
+					database {
+						name = 'org.jooq.meta.postgres.PostgresDatabase'
+						unsignedTypes = false
+						inputSchema = 'public'
+						forcedTypes {
+							forcedType {
+								name = 'varchar'
+								includeExpression = '.*'
+								includeTypes = 'JSONB?'
+							}
+							forcedType {
+								name = 'varchar'
+								includeExpression = '.*'
+								includeTypes = 'INET'
+							}
+						}
+					}
+					generate {
+						deprecated = false
+						records = true
+						immutablePojos = true
+						fluentSetters = true
+						javaTimeTypes = true
+					}
+					target {
+						packageName = 'jooq.dsl'
+						directory = 'src/generated/jooq/'
+					}
+					strategy.name = 'org.jooq.codegen.DefaultGeneratorStrategy'
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,13 @@
+spring:
+
+  jpa:
+    hibernate:
+      ddl-auto: create
+      use-new-id-generator-mappings: true
+    properties:
+      show-sql: true
+      format_sql: true
+
+  jackson:
+    deserialization:
+      fail-on-unknown-properties: true

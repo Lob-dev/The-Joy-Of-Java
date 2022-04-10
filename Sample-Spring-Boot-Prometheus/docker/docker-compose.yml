@@ -1,0 +1,49 @@
+version: '3'
+
+networks:
+  back:
+
+services:
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    environment:
+      - RABBITMQ_NODENAME:rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    networks:
+      - back
+
+  rabbitmq-exporter:
+    image: kbudde/rabbitmq-exporter
+    container_name: rabbitmq-exporter
+    environment:
+      - RABBIT_URL=http://rabbitmq:15672
+    depends_on:
+      - rabbitmq
+    ports:
+      - "9419:9419"
+    networks:
+      - back
+
+  prometheus-1:
+    image: prom/prometheus
+    container_name: prometheus-1
+    environment:
+      - --config.file=/etc/prometheus/prometheus.yml
+    volumes:
+      - C:\Users\serrl\Desktop\config\prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - "9090:9090"
+    networks:
+      - back
+
+  grafana:
+    image: grafana/grafana
+    depends_on:
+      - prometheus-1
+    ports:
+      - "3000:3000"
+    networks:
+      - back

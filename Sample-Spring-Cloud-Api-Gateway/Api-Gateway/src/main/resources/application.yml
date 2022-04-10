@@ -1,0 +1,39 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: Api-Gateway
+
+  cloud:
+    gateway:
+      metrics:
+        enabled: true
+
+  redis:
+    host: 127.0.0.1
+    port: 6379
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: httptrace, prometheus, metrics
+  metrics:
+    tags:
+      application: ${spring.application.name}
+  endpoint:
+    health:
+      show-details: always
+
+gateway:
+  rate-key: "key::1"
+  proxy:
+    authorization:
+      apiUrl: "http://127.0.0.1:9090/"
+    resource:
+      apiUrl: "http://127.0.0.1:9091/"
+
+logging:
+  level:
+    root: info

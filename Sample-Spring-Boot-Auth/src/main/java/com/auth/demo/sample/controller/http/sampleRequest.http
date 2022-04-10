@@ -1,0 +1,47 @@
+
+### add
+POST http://localhost:8080/samples
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2Mjk1NzIyNDgsInVzZXJfbmFtZSI6Im5hbWUiLCJhdXRob3JpdGllcyI6WyJST0xFX1VTRVIiXSwianRpIjoiNzc1MTZjNmYtMjZkYS00ZWJkLTk4N2ItZWUyNTY0ZWIyNmQwIiwiY2xpZW50X2lkIjoic2FtcGxlLWNsaWVudCIsInNjb3BlIjpbInJlYWQiLCJ3cml0ZSJdfQ.dwqKmLNEGSEAfhcSkwl-VrkjutYcp9zlLcSt0lv1qAY
+Content-Type: application/json
+
+{
+  "title" : "title",
+  "description" : "description"
+}
+
+
+### gets
+GET http://localhost:8080/samples
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2Mjk1NzIyNDgsInVzZXJfbmFtZSI6Im5hbWUiLCJhdXRob3JpdGllcyI6WyJST0xFX1VTRVIiXSwianRpIjoiNzc1MTZjNmYtMjZkYS00ZWJkLTk4N2ItZWUyNTY0ZWIyNmQwIiwiY2xpZW50X2lkIjoic2FtcGxlLWNsaWVudCIsInNjb3BlIjpbInJlYWQiLCJ3cml0ZSJdfQ.dwqKmLNEGSEAfhcSkwl-VrkjutYcp9zlLcSt0lv1qAY
+Content-Type: application/json
+
+{
+  "pageNumber" : 0,
+  "pageSize" : 10
+}
+
+
+### get One
+GET http://localhost:8080/samples/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2Mjk1NzIyNDgsInVzZXJfbmFtZSI6Im5hbWUiLCJhdXRob3JpdGllcyI6WyJST0xFX1VTRVIiXSwianRpIjoiNzc1MTZjNmYtMjZkYS00ZWJkLTk4N2ItZWUyNTY0ZWIyNmQwIiwiY2xpZW50X2lkIjoic2FtcGxlLWNsaWVudCIsInNjb3BlIjpbInJlYWQiLCJ3cml0ZSJdfQ.dwqKmLNEGSEAfhcSkwl-VrkjutYcp9zlLcSt0lv1qAY
+
+
+### modify
+PUT http://localhost:8080/samples/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2Mjk1NzIyNDgsInVzZXJfbmFtZSI6Im5hbWUiLCJhdXRob3JpdGllcyI6WyJST0xFX1VTRVIiXSwianRpIjoiNzc1MTZjNmYtMjZkYS00ZWJkLTk4N2ItZWUyNTY0ZWIyNmQwIiwiY2xpZW50X2lkIjoic2FtcGxlLWNsaWVudCIsInNjb3BlIjpbInJlYWQiLCJ3cml0ZSJdfQ.dwqKmLNEGSEAfhcSkwl-VrkjutYcp9zlLcSt0lv1qAY
+Content-Type: application/json
+
+{
+  "title" : "title",
+  "description" : "description1"
+}
+
+### delete
+DELETE http://localhost:8080/samples/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2Mjk1NzIyNDgsInVzZXJfbmFtZSI6Im5hbWUiLCJhdXRob3JpdGllcyI6WyJST0xFX1VTRVIiXSwianRpIjoiNzc1MTZjNmYtMjZkYS00ZWJkLTk4N2ItZWUyNTY0ZWIyNmQwIiwiY2xpZW50X2lkIjoic2FtcGxlLWNsaWVudCIsInNjb3BlIjpbInJlYWQiLCJ3cml0ZSJdfQ.dwqKmLNEGSEAfhcSkwl-VrkjutYcp9zlLcSt0lv1qAY
+Content-Type: application/json
+
+{
+  "title" : "title",
+  "description" : "description1"
+}

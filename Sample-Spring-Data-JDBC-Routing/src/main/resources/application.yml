@@ -1,0 +1,41 @@
+spring:
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+
+    properties:
+      hibernate:
+        format_sql: true
+
+shard-policy:
+  configs:
+    -
+      target: account
+
+data-sources:
+  configs:
+    -
+      name: primary_read_write
+      url: jdbc:postgresql://localhost:5432/sample
+      username: username
+      password: password
+      driver-class-name: org.postgresql.Driver
+    -
+      name: primary_read_only
+      url: jdbc:postgresql://localhost:5433/sample
+      username: username
+      password: password
+      driver-class-name: org.postgresql.Driver
+    -
+      name: secondary_read_write
+      url: jdbc:postgresql://localhost:5532/sample
+      username: username
+      password: password
+      driver-class-name: org.postgresql.Driver
+    -
+      name: secondary_read_only
+      url: jdbc:postgresql://localhost:5532/sample
+      username: username
+      password: password
+      driver-class-name: org.postgresql.Driver

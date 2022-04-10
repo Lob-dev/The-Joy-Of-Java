@@ -1,0 +1,58 @@
+plugins {
+	id 'org.springframework.boot' version '2.4.9'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'org.asciidoctor.convert' version '2.4.0'
+	id 'java'
+}
+
+group = 'com.cache'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+
+dependencies {
+	/* Web */
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+
+	/* Persistence */
+	implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.postgresql:postgresql:42.2.20'
+
+	/* Library */
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+
+	/* Test */
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+	/* REST Docs */
+	testImplementation 'org.springframework.restdocs:spring-restdocs-mockmvc'
+	asciidoctor 'org.springframework.restdocs:spring-restdocs-asciidoctor'
+}
+
+test {
+	outputs.dir 'build/generated-snippets'
+	useJUnitPlatform()
+}
+
+asciidoctor {
+	dependsOn test
+	sourceDir 'src/main/asciidoc'
+	attributes 'snippets': file('build/generated-snippets')
+}
+
+bootJar {
+	dependsOn asciidoctor
+}

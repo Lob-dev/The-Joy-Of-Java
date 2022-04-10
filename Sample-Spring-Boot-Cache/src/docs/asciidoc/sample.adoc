@@ -1,0 +1,54 @@
+:basedir: {docdir}/../../../
+:snippets: {basedir}/build/generated-snippets
+
+
+:doctype: sample
+:icons: font
+:source-highlighter: highlightjs
+:toc: left
+:toclevels: 3
+:sectnums:
+
+= Sample REST API Document
+
+{nbsp} +
+
+== Sample Pagination API
+
+include::{snippets}/Sample/gets/curl-request.adoc[]
+
+include::{snippets}/Sample/gets/http-request.adoc[]
+
+include::{snippets}/Sample/gets/http-response.adoc[]
+
+include::{snippets}/Sample/gets/response-fields.adoc[]
+
+{nbsp} +
+
+== Sample Get-One API
+
+include::{snippets}/Sample/get/curl-request.adoc[]
+
+include::{snippets}/Sample/get/http-request.adoc[]
+
+include::{snippets}/Sample/get/path-parameters.adoc[]
+
+include::{snippets}/Sample/get/http-response.adoc[]
+
+include::{snippets}/Sample/get/response-fields.adoc[]
+
+{nbsp} +
+
+== Sample Post API
+
+include::{snippets}/Sample/post/curl-request.adoc[]
+
+include::{snippets}/Sample/post/http-request.adoc[]
+
+include::{snippets}/Sample/post/request-body.adoc[]
+
+include::{snippets}/Sample/post/request-fields.adoc[]
+
+include::{snippets}/Sample/post/http-response.adoc[]
+
+include::{snippets}/Sample/post/response-body.adoc[]
