@@ -45,5 +45,6 @@
 /Sample-Spring-Boot-React/HELP.md
 /Sample-Spring-Boot-React/settings.gradle
 /Sample-Spring-Boot-React/.gitignore
-/Sample-Spring-Boot-React/front/node_modules
-/Sample-Spring-Boot-React/front/build
+/Sample-Spring-Boot-React/front/node_modules/*
+/Sample-Spring-Boot-React/front/build/*
+/Sample-Spring-Boot-React/front/package-lock.json
