@@ -1,5 +1,8 @@
 package com.shard.demo.global.persistence.shard;
 
+import com.shard.demo.global.persistence.shard.metadata.ShardKeyHolder;
+import com.shard.demo.global.persistence.shard.metadata.ShardMetaInfo;
+import com.shard.demo.global.persistence.shard.metadata.Sharding;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;

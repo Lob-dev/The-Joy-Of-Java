@@ -1,0 +1,95 @@
+plugins {
+	id 'org.springframework.boot' version '2.6.8'
+	id "com.github.node-gradle.node" version "3.3.0"
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'org.asciidoctor.jvm.convert' version '3.3.2'
+	id 'java'
+}
+
+group = 'com.react'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '17'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+	runtimeOnly 'org.postgresql:postgresql'
+	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+ext {
+	snippetsDir = file('build/generated-snippets')
+}
+
+
+// Npm
+// - https://github.com/node-gradle/gradle-node-plugin/blob/master/docs/usage.md
+node {
+	version = "16.13.2"
+	npmVersion = "8.4.1"
+}
+
+task npmInstalls(type: NpmTask) {
+	workingDir = file("${project.projectDir}/front")
+	args = ["install"]
+}
+
+task npmBuild(type: NpmTask) {
+	dependsOn npmInstalls
+	workingDir = file("${project.projectDir}/front")
+	args = ["run", "build"]
+}
+
+task copyReact(type: Copy) {
+	dependsOn npmBuild
+	from "front/build"
+	into 'build/resources/main/static/'
+}
+
+compileJava {
+	dependsOn copyReact
+}
+
+
+// Asciidoctor
+asciidoctor {
+	configurations 'asciidoctorExtensions'
+	inputs.dir snippetsDir
+	dependsOn test
+}
+
+task copyAsciidoctor(type: Copy) {
+	dependsOn asciidoctor
+	from file("build/asciidoc/html5")
+	into file("src/main/resources/static/docs")
+}
+
+
+// Build Cycle
+test {
+	outputs.dir snippetsDir
+	useJUnitPlatform()
+}
+
+build {
+	dependsOn copyAsciidoctor
+}
+
+bootJar {
+	dependsOn copyAsciidoctor
+	from ("${asciidoctor.outputDir}/html5") {
+		into "BOOT-INF/classes/static/docs"
+	}
+}

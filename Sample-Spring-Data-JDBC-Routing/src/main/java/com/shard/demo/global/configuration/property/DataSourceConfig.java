@@ -1,6 +1,7 @@
-package com.shard.demo.global.configuration;
+package com.shard.demo.global.configuration.property;
 
 public record DataSourceConfig (
+    String host,
     String name,
     String url,
     String username,

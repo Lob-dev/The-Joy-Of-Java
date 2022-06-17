@@ -1,7 +1,8 @@
 package com.shard.demo.global.persistence.shard;
 
-import com.shard.demo.global.configuration.DataSourceConfig;
-import com.shard.demo.global.configuration.ShardConfig;
+import com.shard.demo.global.configuration.property.DataSourceConfig;
+import com.shard.demo.global.configuration.property.ShardConfig;
+import com.shard.demo.global.persistence.shard.metadata.ShardMetaInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.CollectionUtils;
 
@@ -23,7 +24,10 @@ public class DefaultHashDataSourceLocator implements DataSourceLocator {
         this.routeTargets = initRoutePathsByTarget(dataSourceConfigs, shardConfigs);
     }
 
-    private HashMap<String, List<String>> initRoutePathsByTarget(List<DataSourceConfig> dataSourceConfigs, List<ShardConfig> shardConfigs) {
+    private HashMap<String, List<String>> initRoutePathsByTarget(
+            List<DataSourceConfig> dataSourceConfigs,
+            List<ShardConfig> shardConfigs
+    ) {
         final ArrayList<String> routePaths = dataSourceConfigs.stream()
                 .map(DataSourceConfig::name)
                 .map(name -> name.split("_")[0])

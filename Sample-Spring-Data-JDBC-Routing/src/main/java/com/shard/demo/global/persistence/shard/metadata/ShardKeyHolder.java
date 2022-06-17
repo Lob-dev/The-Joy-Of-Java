@@ -1,4 +1,4 @@
-package com.shard.demo.global.persistence.shard;
+package com.shard.demo.global.persistence.shard.metadata;
 
 public class ShardKeyHolder {
     private static final ThreadLocal<ShardMetaInfo> holder = new ThreadLocal<>();

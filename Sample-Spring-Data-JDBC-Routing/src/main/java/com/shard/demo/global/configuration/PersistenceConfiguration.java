@@ -1,8 +1,9 @@
 package com.shard.demo.global.configuration;
 
+import com.shard.demo.global.configuration.property.DataSourceProperty;
+import com.shard.demo.global.configuration.property.ShardPolicyProperty;
 import com.shard.demo.global.persistence.route.DataSourceRouter;
 import com.shard.demo.global.persistence.shard.DataSourceLocator;
-import com.shard.demo.global.persistence.shard.DefaultHashDataSourceLocator;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
@@ -41,7 +42,7 @@ public class PersistenceConfiguration {
             DataSourceProperty dataSourceProperty,
             ShardPolicyProperty shardPolicyProperty
     ) {
-        return new DefaultHashDataSourceLocator(dataSourceProperty.configs(), shardPolicyProperty.configs());
+        return new ConsistenceHashDataSourceLocator(dataSourceProperty.configs(), shardPolicyProperty.configs());
     }
 
     @Bean

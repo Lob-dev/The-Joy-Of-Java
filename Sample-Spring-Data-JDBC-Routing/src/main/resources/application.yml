@@ -16,24 +16,28 @@ shard-policy:
 data-sources:
   configs:
     -
+      host: 192.168.0.1
       name: primary_read_write
       url: jdbc:postgresql://localhost:5432/sample
       username: username
       password: password
       driver-class-name: org.postgresql.Driver
     -
+      host: 192.168.0.2
       name: primary_read_only
       url: jdbc:postgresql://localhost:5433/sample
       username: username
       password: password
       driver-class-name: org.postgresql.Driver
     -
+      host: 192.168.0.3
       name: secondary_read_write
       url: jdbc:postgresql://localhost:5532/sample
       username: username
       password: password
       driver-class-name: org.postgresql.Driver
     -
+      host: 192.168.0.4
       name: secondary_read_only
       url: jdbc:postgresql://localhost:5532/sample
       username: username

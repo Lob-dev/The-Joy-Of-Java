@@ -1,6 +1,6 @@
 package com.shard.demo.post.domain.service;
 
-import com.shard.demo.global.persistence.shard.Sharding;
+import com.shard.demo.global.persistence.shard.metadata.Sharding;
 import com.shard.demo.post.domain.persistence.PostEntity;
 import com.shard.demo.post.domain.persistence.PostRepository;
 import lombok.RequiredArgsConstructor;
